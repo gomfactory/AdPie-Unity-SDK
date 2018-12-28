@@ -18,7 +18,6 @@ public class AdPieSample : MonoBehaviour
 #endif
         // 디버깅 적용
         AdPieSDK.Instance.DebugEnabled(true);
-
         // SDK 초기화
         AdPieSDK.Instance.Initialize(mediaId);
     }

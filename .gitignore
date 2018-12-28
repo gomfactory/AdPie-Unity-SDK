@@ -39,3 +39,6 @@ sysinfo.txt
 AdPieSample/Assets/Plugins/Android/android.*
 AdPieSample/Assets/Plugins/Android/com.android.*
 AdPieSample/Assets/Plugins/Android/com.google.*
+
+# Logs
+*.log
