@@ -27,7 +27,7 @@
     <meta-data android:name="unity.splash-enable" android:value="True" />
     
     <!-- AdPie -->
-    <activity android:name="com.gomfactory.adpie.sdk.InterstitialActivity" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent" />
+    <activity android:name="com.gomfactory.adpie.sdk.InterstitialActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
     <activity android:name="com.gomfactory.adpie.sdk.videoads.VideoFullScreenActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
     
   </application>
