@@ -62,4 +62,10 @@ sysinfo.txt
 crashlytics-build.properties
 
 # AdPie Unity Package
+AdPieSample/Assets/AdPie/
+AdPieSample/Assets/AdPie.meta
+AdPieSample/Assets/PlayServicesResolver/
+AdpieSample/Assets/PlayServicesResolver.meta
+AdPieSample/Assets/Plugins.meta
 AdPieSample/Assets/Plugins/Android/
+AdPieSample/Assets/Plugins/Android.meta
