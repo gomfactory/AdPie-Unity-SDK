@@ -56,13 +56,10 @@ sysinfo.txt
 
 # Builds
 *.apk
-*.unitypackage
+#*.unitypackage
 
 # Crashlytics generated file
 crashlytics-build.properties
 
-# Google Play Service Library
-AdPieSample/Assets/Plugins/Android/android.*
-AdPieSample/Assets/Plugins/Android/com.android.*
-AdPieSample/Assets/Plugins/Android/com.google.*
-
+# AdPie Unity Package
+AdPieSample/Assets/Plugins/Android/
