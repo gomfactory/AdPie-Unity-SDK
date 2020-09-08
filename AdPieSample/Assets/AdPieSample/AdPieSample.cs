@@ -5,6 +5,7 @@ public class AdPieSample : MonoBehaviour
 {
     private AdView adView;
     private InterstitialAd interstitialAd;
+    private RewardedVideoAd rewardedVideoAd;
 
     void Start()
     {
@@ -35,87 +36,152 @@ public class AdPieSample : MonoBehaviour
 
     void OnGUI()
     {
-#if UNITY_ANDROID || UNITY_IOS || UNITY_IPHONE
-        GUI.skin.button.fontSize = (int)(0.04f * Screen.width);
+        #if UNITY_ANDROID || UNITY_IOS || UNITY_IPHONE
+    
+        var fontSize = (int)(0.035f * Screen.width);
+        
+        GUI.skin.box.fontSize = fontSize;
+        GUI.skin.button.fontSize = fontSize;
+        
+        var buttonWidth = 0.35f * Screen.width;
+        var buttonHeight = 0.15f * Screen.height;
+        var buttonRowCount = 3;
+        
+        var groupWidth = buttonWidth * 2 + 30;
+        var groupHeight = fontSize + (buttonHeight * buttonRowCount) + (buttonRowCount * 10) + 10;
 
-        Rect rect = new Rect();
-        rect.x = 20;
-        rect.y = 150;
+        var screenWidth = Screen.width;
+        var screenHeight = Screen.height;
 
-        rect.width = Screen.width * 0.3f;
-        rect.height = Screen.height * 0.1f * 2 / 3;
+        var groupX = ( screenWidth - groupWidth ) / 2;
+        var groupY = ( screenHeight - groupHeight ) / 2;
 
-        rect.y = rect.y + rect.height + 15;
-        if (GUI.Button(rect, "Load\nBanner Ad"))
+        GUI.BeginGroup(new Rect( groupX, groupY, groupWidth, groupHeight ) );
+        GUI.Box(new Rect( 0, 0, groupWidth, groupHeight ), "Select AdPie AD function" );
+
+        if ( GUI.Button(new Rect( 10, fontSize + 10, buttonWidth, buttonHeight ), "Load Banner" ) )
         {
-            if (adView != null)
-            {
-                adView.Destory();
-                adView = null;
-            }
+            LoadBanner();
+        }
+        if ( GUI.Button(new Rect( 10, fontSize + 20 + buttonHeight, buttonWidth, buttonHeight ), "Load Interstitial" ) )
+        {
+            LoadInterstitial();
+        }
+        if ( GUI.Button(new Rect( 10, fontSize + 30 + buttonHeight * 2, buttonWidth, buttonHeight ), "Load RV" ) )
+        {
+            LoadRV();
+        }
+        if ( GUI.Button(new Rect( 20 + buttonWidth, fontSize + 10, buttonWidth, buttonHeight ), "Destroy Banner" ) )
+        {
+            DestroyBanner();
+        }
+        if ( GUI.Button(new Rect( 20 + buttonWidth, fontSize + 20 + buttonHeight, buttonWidth, buttonHeight ), "Show Interstitial" ) )
+        {
+            ShowInterstitial();
+        }
+        if ( GUI.Button(new Rect( 20 + buttonWidth, fontSize + 30 + buttonHeight * 2, buttonWidth, buttonHeight ), "Show RV" ) )
+        {
+            ShowRV();
+        }
+
+        GUI.EndGroup();
+        
+        #endif
+    }
+    
+    void LoadBanner() {
 
 #if UNITY_ANDROID
-            string slotId = "57342e0d7174ea39844cac13";
+        string slotId = "57342e0d7174ea39844cac13";
 #elif UNITY_IOS || UNITY_IPHONE
-            string slotId = "57342fdd7174ea39844cac15";
+        string slotId = "57342fdd7174ea39844cac15";
 #else
-            string slotId = "";
+        return;
 #endif
-
-            adView = new AdView(slotId, AdView.POSITION_TOP);
-            adView.OnAdLoaded += AdView_OnAdLoaded;
-            adView.OnAdFailedToLoad += AdView_OnAdFailedToLoad;
-            adView.OnAdClicked += AdView_OnAdClicked;
-            adView.Load();
+        if (adView != null)
+        {
+            adView.Destory();
+            adView = null;
         }
 
-        rect.x = rect.x + rect.width + 15;
-        if (GUI.Button(rect, "Request\nInterstitial Ad"))
+        adView = new AdView(slotId, AdView.POSITION_TOP);
+        adView.OnAdLoaded += AdView_OnAdLoaded;
+        adView.OnAdFailedToLoad += AdView_OnAdFailedToLoad;
+        adView.OnAdClicked += AdView_OnAdClicked;
+        adView.Load();
+    }
+    
+    void DestroyBanner() {
+        if (adView != null)
         {
-            if (interstitialAd != null)
-            {
-                interstitialAd.Destory();
-                interstitialAd = null;
-            }
-
+            adView.Destory();
+            adView = null;
+        }
+    }
+    
+    void LoadInterstitial() {
+    
 #if UNITY_ANDROID
-            string slotId = "57342e3d7174ea39844cac14";
+        string slotId = "57342e3d7174ea39844cac14";
 #elif UNITY_IOS || UNITY_IPHONE
-            string slotId = "573430057174ea39844cac16";
+        string slotId = "573430057174ea39844cac16";
 #else
-        string slotId = "";
+        return;
 #endif
-
-            ////58f99962affeaa4201970fa6 (video)
-            interstitialAd = new InterstitialAd(slotId);
-            interstitialAd.OnAdLoaded += InterstitialAd_OnAdLoaded;
-            interstitialAd.OnAdFailedToLoad += InterstitialAd_OnAdFailedToLoad;
-            interstitialAd.OnAdClicked += InterstitialAd_OnAdClicked;
-            interstitialAd.OnAdShown += InterstitialAd_OnAdShown;
-            interstitialAd.OnAdDismissed += InterstitialAd_OnAdDismissed;
-
-            // optional
-            VideoAdPlaybackListener videoAdPlaybackListener = new VideoAdPlaybackListener();
-            videoAdPlaybackListener.OnVideoAdStarted += OnVideoAdStarted;
-            videoAdPlaybackListener.OnVideoAdPaused += OnVideoAdPaused;
-            videoAdPlaybackListener.OnVideoAdStopped += OnVideoAdStopped;
-            videoAdPlaybackListener.OnVideoAdSkipped += OnVideoAdSkipped;
-            videoAdPlaybackListener.OnVideoAdError += OnVideoAdError;
-            videoAdPlaybackListener.OnVideoAdCompleted += OnVideoAdCompleted;
-            interstitialAd.setVideoAdPlaybackListener(videoAdPlaybackListener);
-
-            interstitialAd.Load();
-        }
-
-        rect.x = rect.x + rect.width + 15;
-        if (GUI.Button(rect, "Show\nInterstitial Ad"))
+        if (interstitialAd != null)
         {
-            if (interstitialAd != null && interstitialAd.IsLoaded())
-            {
-                interstitialAd.Show();
-            }
+            interstitialAd.Destory();
+            interstitialAd = null;
         }
+
+        interstitialAd = new InterstitialAd(slotId);
+        interstitialAd.OnAdLoaded += InterstitialAd_OnAdLoaded;
+        interstitialAd.OnAdFailedToLoad += InterstitialAd_OnAdFailedToLoad;
+        interstitialAd.OnAdClicked += InterstitialAd_OnAdClicked;
+        interstitialAd.OnAdShown += InterstitialAd_OnAdShown;
+        interstitialAd.OnAdDismissed += InterstitialAd_OnAdDismissed;
+
+        interstitialAd.Load();
+    }
+    
+    void ShowInterstitial() {
+        if (interstitialAd != null && interstitialAd.IsLoaded())
+        {
+            interstitialAd.Show();
+        }
+    }
+    
+    void LoadRV() {
+    
+#if UNITY_ANDROID
+        string slotId = "58f99962affeaa4201970fa6";
+#elif UNITY_IOS || UNITY_IPHONE
+        return;
+#else
+        return;
 #endif
+
+        if (rewardedVideoAd != null)
+        {
+            rewardedVideoAd.Destory();
+            rewardedVideoAd = null;
+        }
+
+        rewardedVideoAd = new RewardedVideoAd(slotId);
+        rewardedVideoAd.OnRewardedVideoLoaded += RewardedVideoAd_OnRewardedVideoLoaded;
+        rewardedVideoAd.OnRewardedVideoFailedToLoad += RewardedVideoAd_OnRewardedVideoFailedToLoad;
+        rewardedVideoAd.OnRewardedVideoClicked += RewardedVideoAd_OnRewardedVideoClicked;
+        rewardedVideoAd.OnRewardedVideoStarted += RewardedVideoAd_OnRewardedVideoStarted;
+        rewardedVideoAd.OnRewardedVideoFinished += RewardedVideoAd_OnRewardedVideoFinished;
+
+        rewardedVideoAd.Load();
+    }
+    
+    void ShowRV() {
+    if (rewardedVideoAd != null && rewardedVideoAd.IsLoaded())
+        {
+            rewardedVideoAd.Show();
+        }
     }
 
     void AdView_OnAdLoaded()
@@ -157,35 +223,45 @@ public class AdPieSample : MonoBehaviour
     {
         Debug.Log("::AdPieSample::InterstitialAd_OnAdDismissed");
     }
-
-    void OnVideoAdStarted()
+    
+    void RewardedVideoAd_OnRewardedVideoLoaded()
     {
-        Debug.Log("::AdPieSample::OnVideoAdStarted");
+        Debug.Log("::AdPieSample::RewardedVideoAd_OnRewardedVideoLoaded");
     }
 
-    void OnVideoAdPaused()
+    void RewardedVideoAd_OnRewardedVideoFailedToLoad(int errorCode)
     {
-        Debug.Log("::AdPieSample::OnVideoAdPaused");
+        Debug.Log("::AdPieSample::RewardedVideoAd_OnRewardedVideoFailedToLoad : " + errorCode);
     }
 
-    void OnVideoAdStopped()
+    void RewardedVideoAd_OnRewardedVideoClicked()
     {
-        Debug.Log("::AdPieSample::OnVideoAdStopped");
+        Debug.Log("::AdPieSample::RewardedVideoAd_OnRewardedVideoClicked");
     }
 
-    void OnVideoAdSkipped()
+    void RewardedVideoAd_OnRewardedVideoStarted()
     {
-        Debug.Log("::AdPieSample::OnVideoAdSkipped");
+        Debug.Log("::AdPieSample::RewardedVideoAd_OnRewardedVideoStarted");
     }
 
-    void OnVideoAdError()
+    void RewardedVideoAd_OnRewardedVideoFinished(int finishState)
     {
-        Debug.Log("::AdPieSample::OnVideoAdError");
-    }
-
-    void OnVideoAdCompleted()
-    {
-        Debug.Log("::AdPieSample::OnVideoAdCompleted");
+        string state = "";
+        switch(finishState) {
+            case 0:
+                state = "UNKNOWN";
+                break;
+            case 1:
+                state = "COMPLETED";
+                break;
+            case 2:
+                state = "ERROR";
+                break;
+            case 3:
+                state = "SKIPPED";
+                break;
+        }
+        Debug.Log("::AdPieSample::RewardedVideoAd_OnRewardedVideoFinished : " + state);
     }
 
     public void loadBanner()

@@ -1,6 +1,6 @@
 <dependencies>
   <packages>
-    <package>com.gomfactory:adpie:1.7.2</package>
+    <package>com.gomfactory:adpie:1.8.1</package>
     <package>com.google.android.gms:play-services-ads:15.0.1</package>
   </packages>
   <files>
@@ -15,7 +15,7 @@
     <file>Assets/Plugins/Android/com.android.support.support-fragment-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.support-media-compat-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.support-v4-26.1.0.aar</file>
-    <file>Assets/Plugins/Android/com.gomfactory.adpie-1.7.2.aar</file>
+    <file>Assets/Plugins/Android/com.gomfactory.adpie-1.8.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-15.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-base-15.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-identifier-15.0.1.aar</file>
