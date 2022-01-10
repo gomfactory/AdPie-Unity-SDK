@@ -1,6 +1,6 @@
 <dependencies>
   <packages>
-    <package>com.gomfactory:adpie:1.8.1</package>
+    <package>com.gomfactory:adpie:1.9.3</package>
     <package>com.google.android.gms:play-services-ads:15.0.1</package>
   </packages>
   <files />
