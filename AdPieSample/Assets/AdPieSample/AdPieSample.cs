@@ -156,8 +156,7 @@ public class AdPieSample : MonoBehaviour
 #if UNITY_ANDROID
         string slotId = "58f99962affeaa4201970fa6";
 #elif UNITY_IOS || UNITY_IPHONE
-        string slotId = ""; // 현재 미지원
-        return;
+        string slotId = "61de726d65a17f71c7896827";
 #else
         return;
 #endif
