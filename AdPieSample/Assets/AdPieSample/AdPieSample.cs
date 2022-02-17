@@ -100,7 +100,7 @@ public class AdPieSample : MonoBehaviour
 #endif
         if (adView != null)
         {
-            adView.Destory();
+            adView.Destroy();
             adView = null;
         }
 
@@ -114,7 +114,7 @@ public class AdPieSample : MonoBehaviour
     void DestroyBanner() {
         if (adView != null)
         {
-            adView.Destory();
+            adView.Destroy();
             adView = null;
         }
     }
@@ -130,7 +130,7 @@ public class AdPieSample : MonoBehaviour
 #endif
         if (interstitialAd != null)
         {
-            interstitialAd.Destory();
+            interstitialAd.Destroy();
             interstitialAd = null;
         }
 
@@ -163,7 +163,7 @@ public class AdPieSample : MonoBehaviour
 
         if (rewardedVideoAd != null)
         {
-            rewardedVideoAd.Destory();
+            rewardedVideoAd.Destroy();
             rewardedVideoAd = null;
         }
 
