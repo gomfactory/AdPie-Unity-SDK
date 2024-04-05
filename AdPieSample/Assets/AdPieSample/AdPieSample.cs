@@ -104,7 +104,7 @@ public class AdPieSample : MonoBehaviour
             adView = null;
         }
 
-        adView = new AdView(slotId, AdView.POSITION_TOP);
+        adView = new AdView(slotId, AdView.POSITION_TOP, 320, 50);
         adView.OnAdLoaded += AdView_OnAdLoaded;
         adView.OnAdFailedToLoad += AdView_OnAdFailedToLoad;
         adView.OnAdClicked += AdView_OnAdClicked;
