@@ -4,6 +4,7 @@
 ### 1.1.2 (2024년 9월 24일)
 - Android SDK 1.13.7 연동
 - iOS SDK 1.6.5 연동
+- EDM4U(External Dependency Manager for Unity) 1.2.179 업데이트
 
 ### 1.1.1 (2024년 4월 5일)
 - Android SDK 1.13.4 연동
